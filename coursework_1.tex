@@ -130,20 +130,15 @@
 
 \href{mailto:j.j.stiens@gmail.com}{\nolinkurl{j.j.stiens@gmail.com}}
 
-\href{https://github.com/jenjane118}{github.com/jenjane118}
+\href{https://github.com/jenjane118/ngs_tutorials}{github.com/jenjane118/ngs\_tutorials/coursework\_1.md}
 
 \subsection{Question 1}\label{question-1}
 
 \emph{Using good NGS practices, remap Negative.fq so that the mapping
 statistics improve.}
 
-\begin{enumerate}
-\def\labelenumi{\alph{enumi})}
-\tightlist
-\item
-  View file and work out what is wrong with reads. Generate fastqc
-  report.
-\end{enumerate}
+\emph{a) View file and work out what is wrong with reads. Generate
+fastqc report.}
 
 First I will generate a Fastqc report of the trimmed\_Negative.fq
 sequence file.
@@ -154,11 +149,7 @@ sequence file.
 \end{Highlighting}
 \end{Shaded}
 
-\begin{figure}
-\centering
 \includegraphics{trimmed_Negative_fastqc.png}
-\caption{sequence quality plot}
-\end{figure}
 
 \href{/d/projects/u/sj003/course_materials/fastq/coursework_1/trimmed_Negative_fastqc.html}{fastqc
 report original}
@@ -184,23 +175,13 @@ quality.
 \end{Highlighting}
 \end{Shaded}
 
-\begin{figure}
-\centering
 \includegraphics{trimmedNs_negative_fastqc.png}
-\caption{sequence quality plot}
-\end{figure}
 
 \href{/d/projects/u/sj003/course_materials/fastq/coursework_1/trimmedNs_Negative_fastqc.html}{fastqc
 report trimmed}
 
-\begin{enumerate}
-\def\labelenumi{\alph{enumi})}
-\setcounter{enumi}{1}
-\tightlist
-\item
-  Use bowtie2 to align the reads to reference genome using two different
-  options.
-\end{enumerate}
+\emph{b) Use bowtie2 to align the reads to reference genome using two
+different options.}
 
 To align both the original file and the trimmed file using bowtie2
 against the reference genome, AFPN02.1, and generate a .sam file to use
@@ -228,11 +209,7 @@ alignment (Negative2) has the same stats as Positive:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{figure}
-\centering
 \includegraphics{Neg_v_Pos_multiq.png}
-\caption{multiq alignment scores}
-\end{figure}
 
 Another option is to align the Negative file using options in Bowtie2
 that ignore the first and last bases when aligning:
@@ -243,11 +220,7 @@ that ignore the first and last bases when aligning:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{figure}
-\centering
-\includegraphics{~/git/systems_bio/cw1_q1_multiqc.png}
-\caption{multiqc sequence stats}
-\end{figure}
+\includegraphics{cw1_q1_multiqc.png}
 
 This gives the same alignment results as using cutadapt.
 
@@ -328,11 +301,7 @@ all the alignments.
 \end{Highlighting}
 \end{Shaded}
 
-\begin{figure}
-\centering
 \includegraphics{MultiQCstats_Q1.png}
-\caption{multiqc sequence stats}
-\end{figure}
 
 \href{/d/projects/u/sj003/results_cw1/q1_multiqc_report.html}{multiq
 report}
@@ -379,11 +348,7 @@ We can examine the fastqc report of the edited sequence:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{figure}
-\centering
 \includegraphics{trimmedns_BQ_fastqc.png}
-\caption{fastqc sequence quality}
-\end{figure}
 
 This shows that though the quality of the ends is no longer as poor, the
 entire sequence has rather low sequence quality, with an average Phred
@@ -446,11 +411,7 @@ all the alignments.
 \end{Highlighting}
 \end{Shaded}
 
-\begin{figure}
-\centering
 \includegraphics{Multiqc_report_q2.png}
-\caption{Multiqc report}
-\end{figure}
 
 \href{/d/projects/u/sj003/results_cw1/q2_multiqc_report.html}{multiqc
 report}
@@ -471,7 +432,7 @@ error rate. To achieve the best alignment percentage, we have to accept
 an error rate of 4.51\% using the custom parameters (trimmednsBQ\_cust).
 The next best alignment rate, using the very sensitive local parameters
 (trimmednsBQ\_vsl) has a lower error rate of 4.15\%. While this is
-better, I am not sure if an error rate above 4\% is acceptable for a
+better, I am not sure if any error rate above 4\% is acceptable for a
 consensus genome. Perhaps the sequencing runs should be repeated to try
 to get more high quality sequences.
 
@@ -504,7 +465,7 @@ only uniquely mapped reads}
 \end{Highlighting}
 \end{Shaded}
 
-\emph{c)How can output from b be obtained using Bowtie2 instead?}
+\emph{c) How can output from b be obtained using Bowtie2 instead?}
 
 Using bowtie2 -k option allows us to report the sequences with the
 desired number of alignments, which in this case I am using 1 to get
@@ -522,7 +483,20 @@ samtools, like I've done in b.
 \end{Highlighting}
 \end{Shaded}
 
-\emph{d) Use BLAST to identify origin of unmapped reads.}
+\emph{d) Use BLAST to identify origin of unmapped reads.} To do this, I
+used samtools fasta function to convert from a .bam file to a fasta
+file.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ExtensionTok{/s/software/samtools/v1.9/bin/samtools}\NormalTok{ fasta unmappedBQ.bam }\OperatorTok{>}\NormalTok{ unmappedBQ.fa}
+\end{Highlighting}
+\end{Shaded}
+
+Then I cut and pasted about 50 sequences into blastn window to evaluate
+the origin of the sequences.
+
+\href{https://blast.ncbi.nlm.nih.gov/Blast.cgi?CMD=Web\&PAGE_TYPE=BlastDocs\&DOC_TYPE=BlastHelp}{blastn}
 
 
 \end{document}

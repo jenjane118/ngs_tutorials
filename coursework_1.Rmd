@@ -5,18 +5,17 @@ output:
   html_document:
     keep_md: yes
     self_contained: no
-  word_document: default
 ---
 ## Jennifer Stiens
 j.j.stiens@gmail.com
 
-[github.com/jenjane118](https://github.com/jenjane118)
+[github.com/jenjane118/ngs_tutorials/coursework_1.md](https://github.com/jenjane118/ngs_tutorials)
 
 ## Question 1
 
 *Using good NGS practices, remap Negative.fq so that the mapping statistics improve.* 
 
-a) View file and work out what is wrong with reads. Generate fastqc report.
+*a) View file and work out what is wrong with reads. Generate fastqc report.*
 
 First I will generate a Fastqc report of the trimmed_Negative.fq sequence file.
 ```{bash fastqc 1, eval=FALSE}
@@ -24,12 +23,13 @@ First I will generate a Fastqc report of the trimmed_Negative.fq sequence file.
 
 ```
 <!-- ![sequence quality plot](/d/projects/u/sj003/course_materials/fastq/coursework_1/trimmed_Negative_fastqc.png) -->
-
+<p>
 ![sequence quality plot](trimmed_Negative_fastqc.png)
+</p>
 
 [fastqc report original](/d/projects/u/sj003/course_materials/fastq/coursework_1/trimmed_Negative_fastqc.html)
 
-This shows a dropoff of sequence quality at the ends of each read. Looking at the fasta file on the shell screen, it is obvious that the reads have 5 N's at the 5' end and 4 N's at the 3' end of each read that need to be removed. To do this, we use cutadapt to process each read.
+This shows very low sequence quality at the start and end of each read. Looking at the fasta file on the shell screen, it is obvious that the reads have 5 N's at the 5' end and 4 N's at the 3' end of each read that need to be removed. To do this, we use cutadapt to process each read.
 
 ```{bash cudadapt, eval=FALSE}
 /s/software/anaconda/python3/bin/cutadapt --trim-n -o trimmedNs_negative.fq trimmed_Negative.fq
@@ -43,13 +43,14 @@ Running Fastqc again, you can see an improvement in the sequence quality.
 /s/software/fastqc/v0.11.8/FastQC/fastqc trimmedNs_Negative.fq
 ```
 <!-- ![sequence quality plot](/d/projects/u/sj003/course_materials/fastq/coursework_1/trimmedNs_negative_fastqc.png) -->
-
+<p>
 ![sequence quality plot](trimmedNs_negative_fastqc.png)
+</p>
 
 
 [fastqc report trimmed](/d/projects/u/sj003/course_materials/fastq/coursework_1/trimmedNs_Negative_fastqc.html)
 
-b) Use bowtie2 to align the reads to reference genome using two different options.
+*b) Use bowtie2 to align the reads to reference genome using two different options.*
 
 To align both the original file and the trimmed file using bowtie2 against the reference genome, AFPN02.1, and generate a .sam file to use for further analysis:
 
@@ -66,8 +67,9 @@ The text file can be examined on the bash terminal, and the .sam file can be ana
 /s/software/anaconda/python3/bin/multiqc . -f
 ```
 <!-- ![multiq alignment scores](/d/projects/u/sj003/results_cw1/Neg_v_Pos_multiq.png) -->
-
+<p>
 ![multiq alignment scores](Neg_v_Pos_multiq.png)
+</p>
 
 
 Another option is to align the Negative file using options in Bowtie2 that ignore the first and last bases when aligning:
@@ -75,8 +77,9 @@ Another option is to align the Negative file using options in Bowtie2 that ignor
 ```{bash bowtie3, eval=FALSE}
 time /s/software/anaconda/python3/bin/bowtie2 --end-to-end --trim5 5 --trim3 4 -x ${st_path}/course_materials/genomes/AFPN02.1/AFPN02.1_merge -q ${st_path}/course_materials/fastq/trimmed_Negative.fq -S Negative3.sam 2> Negative3_bowtie_stats.txt
 ```
-
-![multiqc sequence stats](~/git/systems_bio/cw1_q1_multiqc.png)
+<p>
+![multiqc sequence stats](cw1_q1_multiqc.png)
+</p>
 
 This gives the same alignment results as using cutadapt.
 
@@ -139,8 +142,9 @@ Run a MultiQC report to summarise the sequence and alignment data for all the al
 ```{bash finalmultiqc, eval=FALSE}
 /s/software/anaconda/python3/bin/multiqc . -n q1_multiqc_report
 ```
-
+<p>
 ![multiqc sequence stats](MultiQCstats_Q1.png)
+</p>
 
 [multiq report](/d/projects/u/sj003/results_cw1/q1_multiqc_report.html)
 
@@ -164,8 +168,9 @@ We can examine the fastqc report of the edited sequence:
 ```{bash fastqc q2, eval=FALSE}
 /s/software/fastqc/v0.11.8/FastQC/fastqc trimmedns_BQ.fq
 ```
-
+<p>
 ![fastqc sequence quality](trimmedns_BQ_fastqc.png)
+</p>
 
 
 This shows that though the quality of the ends is no longer as poor, the entire sequence has rather low sequence quality, with an average Phred score of 21.
@@ -203,8 +208,9 @@ Run a MultiQC report to summarise the sequence and alignment data for all the al
 ```{bash q2multiqc, eval=FALSE}
 /s/software/anaconda/python3/bin/multiqc . -f -n q2_multiqc_report
 ```
-
+<p>
 ![Multiqc report](Multiqc_report_q2.png)
+</p>
 
 [multiqc report](/d/projects/u/sj003/results_cw1/q2_multiqc_report.html)
 
@@ -214,7 +220,7 @@ trimmednsBQ      |   0.9 / 82.8%      |   4.63%
 trimmednsBQ_vsl  |   1.0 / 89.4%      |   4.15%
 trimmednsBQ_cust |   1.1 / 98.6%      |   4.51%
 
-The report shows that there is a trade-off between alignment rate and error rate. To achieve the best alignment percentage, we have to accept an error rate of 4.51% using the custom parameters (trimmednsBQ_cust). The next best alignment rate, using the very sensitive local parameters (trimmednsBQ_vsl) has a lower error rate of 4.15%. While this is better, I am not sure if an error rate above 4% is acceptable for a consensus genome. Perhaps the sequencing runs should be repeated to try to get more high quality sequences.
+The report shows that there is a trade-off between alignment rate and error rate. To achieve the best alignment percentage, we have to accept an error rate of 4.51% using the custom parameters (trimmednsBQ_cust). The next best alignment rate, using the very sensitive local parameters (trimmednsBQ_vsl) has a lower error rate of 4.15%. While this is better, I am not sure if any error rate above 4% is acceptable for a consensus genome. Perhaps the sequencing runs should be repeated to try to get more high quality sequences.
 
 
 ##Question 3
@@ -242,7 +248,7 @@ The report shows that there is a trade-off between alignment rate and error rate
 ```
 
 
-*c)How can output from b be obtained using Bowtie2 instead?*
+*c) How can output from b be obtained using Bowtie2 instead?*
 
 Using bowtie2 -k option allows us to report the sequences with the desired number of alignments, which in this case I am using 1 to get reads that have only matched once. Unfortunately, this leaves the unaligned sequences in the file. Looking for solutions online, it seems there was a different command in bowtie (versus bowtie2), -m, that was able to filter by number of hits. Looking online, all the advice seems to be that the most logical thing is to do this using the flags in samtools, like I've done in b.
 
@@ -254,6 +260,13 @@ time /s/software/anaconda/python3/bin/bowtie2 --end-to-end -k 1 -x ${st_path}/co
 
 
 *d) Use BLAST to identify origin of unmapped reads.*
+To do this, I used samtools fasta function to convert from a .bam file to a fasta file.
+```{bash samfasta, eval=FALSE}
+/s/software/samtools/v1.9/bin/samtools fasta unmappedBQ.bam > unmappedBQ.fa
+```
+Then I cut and pasted 10 sequences from the fasta file into blastn window and searched on the nr/nt nucleotide database to evaluate the origin of the sequences. For 9 of the sequences Homo sapiens was the top hit, and for one of them, Pan troglodytes was the top hit (chimpanzee). I am assuming there was some contamination of the e coli sample by human DNA during purification or library construction. None of these 10 were e coli sequences.
+
+[blastn](https://blast.ncbi.nlm.nih.gov/Blast.cgi?CMD=Web&PAGE_TYPE=BlastDocs&DOC_TYPE=BlastHelp)
 
 
 
