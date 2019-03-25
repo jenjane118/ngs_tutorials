@@ -1,10 +1,10 @@
 ---
 title: "Coursework 1"
 output:
-  pdf_document: default
   html_document:
     keep_md: yes
-    self_contained: no
+    self_contained: yes
+  pdf_document: default
 ---
 ## Jennifer Stiens
 j.j.stiens@gmail.com

@@ -3,7 +3,7 @@ title: "Coursework 1"
 output:
   html_document:
     keep_md: yes
-    self_contained: no
+    self_contained: yes
   pdf_document: default
 ---
 ## Jennifer Stiens
@@ -30,7 +30,7 @@ First I will generate a Fastqc report of the trimmed_Negative.fq sequence file.
 
 [fastqc report original](/d/projects/u/sj003/course_materials/fastq/coursework_1/trimmed_Negative_fastqc.html)
 
-This shows a dropoff of sequence quality at the ends of each read. Looking at the fasta file on the shell screen, it is obvious that the reads have 5 N's at the 5' end and 4 N's at the 3' end of each read that need to be removed. To do this, we use cutadapt to process each read.
+This shows very low sequence quality at the start and end of each read. Looking at the fasta file on the shell screen, it is obvious that the reads have 5 N's at the 5' end and 4 N's at the 3' end of each read that need to be removed. To do this, we use cutadapt to process each read.
 
 
 ```bash
@@ -286,7 +286,7 @@ To do this, I used samtools fasta function to convert from a .bam file to a fast
 ```bash
 /s/software/samtools/v1.9/bin/samtools fasta unmappedBQ.bam > unmappedBQ.fa
 ```
-Then I cut and pasted about 50 sequences into blastn window to evaluate the origin of the sequences.
+Then I cut and pasted 10 sequences from the fasta file into blastn window and searched on the nr/nt nucleotide database to evaluate the origin of the sequences. For 9 of the sequences Homo sapiens was the top hit, and for one of them, Pan troglodytes was the top hit (chimpanzee). I am assuming there was some contamination of the e coli sample by human DNA during purification or library construction. None of these 10 were e coli sequences.
 
 [blastn](https://blast.ncbi.nlm.nih.gov/Blast.cgi?CMD=Web&PAGE_TYPE=BlastDocs&DOC_TYPE=BlastHelp)
 
