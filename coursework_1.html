@@ -318,7 +318,7 @@ less trimmednsBQcust_bowtie_stats.txt</code></pre>
 <p>Run a MultiQC report to summarise the sequence and alignment data for all the alignments.</p>
 <pre class="bash"><code>/s/software/anaconda/python3/bin/multiqc . -f -n q2_multiqc_report</code></pre>
 <div class="figure">
-<img src="/d/projects/u/sj003/results_cw1/Multiqc_report_q2.png" alt="Multiqc report" />
+<img src="Multiqc_report_q2.png" alt="Multiqc report" />
 <p class="caption">Multiqc report</p>
 </div>
 <p><a href="/d/projects/u/sj003/results_cw1/q2_multiqc_report.html">multiqc report</a></p>
@@ -364,7 +364,7 @@ less trimmednsBQcust_bowtie_stats.txt</code></pre>
 # includes only unmapped reads (with flag [4])
 /s/software/samtools/v1.9/bin/samtools view -bf 4 trimmednsBQ.bam &gt; unmappedBQ.bam</code></pre>
 <p><em>c)How can output from b be obtained using Bowtie2 instead?</em></p>
-<p>Using bowtie2 -k option allows us to report the sequences with the desired number of alignments, which in this case I am using 1 to get reads that have only matched once. Unfortunately, this leaves the unaligned sequences in the file. Looking for solutions online, it seems there was a different command in bowtie (v bowtie2), -m, that was able to filter by number of hits. Looking online, all the advice seems to be to do this using the flags in samtools, like I’ve done in b.</p>
+<p>Using bowtie2 -k option allows us to report the sequences with the desired number of alignments, which in this case I am using 1 to get reads that have only matched once. Unfortunately, this leaves the unaligned sequences in the file. Looking for solutions online, it seems there was a different command in bowtie (versus bowtie2), -m, that was able to filter by number of hits. Looking online, all the advice seems to be that the most logical thing is to do this using the flags in samtools, like I’ve done in b.</p>
 <pre class="bash"><code>## filters for only unique reads (-k) but still contains unaligned seqs
 time /s/software/anaconda/python3/bin/bowtie2 --end-to-end -k 1 -x ${st_path}/course_materials/genomes/AFPN02.1/AFPN02.1_merge -q ${st_path}/course_materials/fastq/trimmedns_BQ.fq -S trimmednsBQ2.sam 2&gt; trimmednsBQ2_stats.txt
 </code></pre>

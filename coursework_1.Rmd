@@ -1,9 +1,11 @@
 ---
 title: "Coursework 1"
 output:
+  pdf_document: default
   html_document:
     keep_md: yes
     self_contained: no
+  word_document: default
 ---
 ## Jennifer Stiens
 j.j.stiens@gmail.com
@@ -23,9 +25,7 @@ First I will generate a Fastqc report of the trimmed_Negative.fq sequence file.
 ```
 <!-- ![sequence quality plot](/d/projects/u/sj003/course_materials/fastq/coursework_1/trimmed_Negative_fastqc.png) -->
 
-![sequence quality plot](~/git/systems_bio/trimmed_Negative_fastqc.png)
-
-
+![sequence quality plot](trimmed_Negative_fastqc.png)
 
 [fastqc report original](/d/projects/u/sj003/course_materials/fastq/coursework_1/trimmed_Negative_fastqc.html)
 
@@ -44,7 +44,7 @@ Running Fastqc again, you can see an improvement in the sequence quality.
 ```
 <!-- ![sequence quality plot](/d/projects/u/sj003/course_materials/fastq/coursework_1/trimmedNs_negative_fastqc.png) -->
 
-![sequence quality plot](~/git/systems_bio/trimmedNs_negative_fastqc.png)
+![sequence quality plot](trimmedNs_negative_fastqc.png)
 
 
 [fastqc report trimmed](/d/projects/u/sj003/course_materials/fastq/coursework_1/trimmedNs_Negative_fastqc.html)
@@ -67,7 +67,7 @@ The text file can be examined on the bash terminal, and the .sam file can be ana
 ```
 <!-- ![multiq alignment scores](/d/projects/u/sj003/results_cw1/Neg_v_Pos_multiq.png) -->
 
-![multiq alignment scores](~/git/systems_bio/Neg_v_Pos_multiq.png)
+![multiq alignment scores](Neg_v_Pos_multiq.png)
 
 
 Another option is to align the Negative file using options in Bowtie2 that ignore the first and last bases when aligning:
@@ -140,7 +140,7 @@ Run a MultiQC report to summarise the sequence and alignment data for all the al
 /s/software/anaconda/python3/bin/multiqc . -n q1_multiqc_report
 ```
 
-![multiqc sequence stats](~/git/systems_bio/MultiQCstats_Q1.png)
+![multiqc sequence stats](MultiQCstats_Q1.png)
 
 [multiq report](/d/projects/u/sj003/results_cw1/q1_multiqc_report.html)
 
@@ -165,7 +165,7 @@ We can examine the fastqc report of the edited sequence:
 /s/software/fastqc/v0.11.8/FastQC/fastqc trimmedns_BQ.fq
 ```
 
-![fastqc sequence quality](~/git/systems_bio/trimmedns_BQ_fastqc.png)
+![fastqc sequence quality](trimmedns_BQ_fastqc.png)
 
 
 This shows that though the quality of the ends is no longer as poor, the entire sequence has rather low sequence quality, with an average Phred score of 21.
@@ -204,7 +204,7 @@ Run a MultiQC report to summarise the sequence and alignment data for all the al
 /s/software/anaconda/python3/bin/multiqc . -f -n q2_multiqc_report
 ```
 
-![Multiqc report](/d/projects/u/sj003/results_cw1/Multiqc_report_q2.png)
+![Multiqc report](Multiqc_report_q2.png)
 
 [multiqc report](/d/projects/u/sj003/results_cw1/q2_multiqc_report.html)
 
@@ -244,7 +244,7 @@ The report shows that there is a trade-off between alignment rate and error rate
 
 *c)How can output from b be obtained using Bowtie2 instead?*
 
-Using bowtie2 -k option allows us to report the sequences with the desired number of alignments, which in this case I am using 1 to get reads that have only matched once. Unfortunately, this leaves the unaligned sequences in the file. Looking for solutions online, it seems there was a different command in bowtie (v bowtie2), -m, that was able to filter by number of hits. Looking online, all the advice seems to be to do this using the flags in samtools, like I've done in b.
+Using bowtie2 -k option allows us to report the sequences with the desired number of alignments, which in this case I am using 1 to get reads that have only matched once. Unfortunately, this leaves the unaligned sequences in the file. Looking for solutions online, it seems there was a different command in bowtie (versus bowtie2), -m, that was able to filter by number of hits. Looking online, all the advice seems to be that the most logical thing is to do this using the flags in samtools, like I've done in b.
 
 ```{bash bowtie filter, eval=FALSE}
 ## filters for only unique reads (-k) but still contains unaligned seqs
