@@ -1,12 +1,8 @@
 ---
 title: "Coursework 1"
 output:
-  pdf_document: default
   html_document:
-    keep_md: yes
-    self_contained: no
-  github_document: default
-  
+    df_print: paged
 ---
 ## Jennifer Stiens
 j.j.stiens@gmail.com
