@@ -24,6 +24,7 @@ First I will generate a Fastqc report of the trimmed_Negative.fq sequence file.
 
 ```
 <!-- ![sequence quality plot](/d/projects/u/sj003/course_materials/fastq/coursework_1/trimmed_Negative_fastqc.png) -->
+
 <p>
 ![sequence quality plot](trimmed_Negative_fastqc.png)
 </p>
@@ -182,7 +183,7 @@ We can examine the fastqc report of the edited sequence:
 /s/software/fastqc/v0.11.8/FastQC/fastqc trimmedns_BQ.fq
 ```
 <p>
-![fastqc sequence quality](trimmedns_BQ_fastqc.png)
+![fastqc sequence quality](trimmedns_BQ_fastqc.png){ width=50% }
 </p>
 
 
