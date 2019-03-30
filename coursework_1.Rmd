@@ -265,7 +265,14 @@ To do this, I used samtools fasta function to convert from a .bam file to a fast
 ```
 Then I cut and pasted 10 sequences from the fasta file into blastn window and searched on the nr/nt nucleotide database to evaluate the origin of the sequences. For 9 of the sequences Homo sapiens was the top hit, and for one of them, Pan troglodytes was the top hit (chimpanzee). I am assuming there was some contamination of the e coli sample by human DNA during purification or library construction. None of these 10 were e coli sequences.
 
-[blastn](https://blast.ncbi.nlm.nih.gov/Blast.cgi?CMD=Web&PAGE_TYPE=BlastDocs&DOC_TYPE=BlastHelp)
+[blastn](https://blast.ncbi.nlm.nih.gov)
+
+<p>
+![BLAST result sample](blast.png){width=75%}
+</p>
+Example BLAST result for one sequence
+
+
 
 
 
