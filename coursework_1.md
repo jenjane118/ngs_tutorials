@@ -1,15 +1,17 @@
 ---
 title: "Coursework 1"
+author: "Jennifer J. Stiens"
 output:
   html_document:
     keep_md: yes
-    self_contained: yes
   pdf_document: default
+  header-includes: \usepackage{color}
 ---
-## Jennifer Stiens
+
+
 j.j.stiens@gmail.com
 
-[github.com/jenjane118/ngs_tutorials/coursework_1.md](https://github.com/jenjane118/ngs_tutorials)
+[github.com/jenjane118/ngs_tutorials](https://github.com/jenjane118/ngs_tutorials)
 
 ## Question 1
 
@@ -25,9 +27,9 @@ First I will generate a Fastqc report of the trimmed_Negative.fq sequence file.
 ```
 <!-- ![sequence quality plot](/d/projects/u/sj003/course_materials/fastq/coursework_1/trimmed_Negative_fastqc.png) -->
 
-<p>
-![sequence quality plot](trimmed_Negative_fastqc.png)
-</p>
+\
+![sequence quality plot](trimmed_Negative_fastqc.png){width=75%}
+\
 
 [fastqc report original](/d/projects/u/sj003/course_materials/fastq/coursework_1/trimmed_Negative_fastqc.html)
 
@@ -46,10 +48,10 @@ Running Fastqc again, you can see an improvement in the sequence quality.
 ```bash
 /s/software/fastqc/v0.11.8/FastQC/fastqc trimmedNs_Negative.fq
 ```
-<!-- ![sequence quality plot](/d/projects/u/sj003/course_materials/fastq/coursework_1/trimmedNs_negative_fastqc.png) -->
-<p>
-![sequence quality plot](trimmedNs_negative_fastqc.png)
-</p>
+
+\
+![sequence quality plot](trimmedNs_negative_fastqc.png){ width=75%}
+\
 
 
 [fastqc report trimmed](/d/projects/u/sj003/course_materials/fastq/coursework_1/trimmedNs_Negative_fastqc.html)
@@ -73,10 +75,12 @@ The text file can be examined on the bash terminal, and the .sam file can be ana
 ```bash
 /s/software/anaconda/python3/bin/multiqc . -f
 ```
-<!-- ![multiq alignment scores](/d/projects/u/sj003/results_cw1/Neg_v_Pos_multiq.png) -->
-<p>
-![multiq alignment scores](Neg_v_Pos_multiq.png)
-</p>
+
+
+\
+![multiq alignment scores](Neg_v_Pos_multiq.png){ width=75% }
+\
+
 
 
 Another option is to align the Negative file using options in Bowtie2 that ignore the first and last bases when aligning:
@@ -85,9 +89,11 @@ Another option is to align the Negative file using options in Bowtie2 that ignor
 ```bash
 time /s/software/anaconda/python3/bin/bowtie2 --end-to-end --trim5 5 --trim3 4 -x ${st_path}/course_materials/genomes/AFPN02.1/AFPN02.1_merge -q ${st_path}/course_materials/fastq/trimmed_Negative.fq -S Negative3.sam 2> Negative3_bowtie_stats.txt
 ```
-<p>
-![multiqc sequence stats](cw1_q1_multiqc.png)
-</p>
+
+
+\
+![multiqc sequence stats](cw1_q1_multiqc.png){width=75%}
+\
 
 This gives the same alignment results as using cutadapt.
 
@@ -141,6 +147,8 @@ do
 done
 
 ```
+
+
 Call the script using:
 
 ```bash
@@ -154,9 +162,11 @@ Run a MultiQC report to summarise the sequence and alignment data for all the al
 ```bash
 /s/software/anaconda/python3/bin/multiqc . -n q1_multiqc_report
 ```
-<p>
+
+
+\
 ![multiqc sequence stats](MultiQCstats_Q1.png)
-</p>
+\
 
 [multiq report](/d/projects/u/sj003/results_cw1/q1_multiqc_report.html)
 
@@ -182,9 +192,9 @@ We can examine the fastqc report of the edited sequence:
 ```bash
 /s/software/fastqc/v0.11.8/FastQC/fastqc trimmedns_BQ.fq
 ```
-<p>
-![fastqc sequence quality](trimmedns_BQ_fastqc.png){ width=50% }
-</p>
+\
+![fastqc sequence quality](trimmedns_BQ_fastqc.png){ width=75% }
+\
 
 
 This shows that though the quality of the ends is no longer as poor, the entire sequence has rather low sequence quality, with an average Phred score of 21.
@@ -227,9 +237,11 @@ Run a MultiQC report to summarise the sequence and alignment data for all the al
 ```bash
 /s/software/anaconda/python3/bin/multiqc . -f -n q2_multiqc_report
 ```
-<p>
+
+
+\
 ![Multiqc report](Multiqc_report_q2.png)
-</p>
+\
 
 [multiqc report](/d/projects/u/sj003/results_cw1/q2_multiqc_report.html)
 
@@ -289,7 +301,16 @@ To do this, I used samtools fasta function to convert from a .bam file to a fast
 ```
 Then I cut and pasted 10 sequences from the fasta file into blastn window and searched on the nr/nt nucleotide database to evaluate the origin of the sequences. For 9 of the sequences Homo sapiens was the top hit, and for one of them, Pan troglodytes was the top hit (chimpanzee). I am assuming there was some contamination of the e coli sample by human DNA during purification or library construction. None of these 10 were e coli sequences.
 
-[blastn](https://blast.ncbi.nlm.nih.gov/Blast.cgi?CMD=Web&PAGE_TYPE=BlastDocs&DOC_TYPE=BlastHelp)
+[blastn website](https://blast.ncbi.nlm.nih.gov)
+
+\
+![BLAST result sample](blast.png){width=75%}
+\
+
+
+
+
+
 
 
 

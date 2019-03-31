@@ -1,12 +1,12 @@
 ---
 title: "Coursework 2"
-author: Jennifer J. Stiens
+author: "Jennifer J. Stiens"
 output:
   html_document:
+    
     keep_md: yes
-    pdf_document: default
-  header-includes:
-  - \usepackage{color}
+  pdf_document: default
+  header-includes: \usepackage{color}
 ---
 ## Jennifer Stiens
 j.j.stiens@gmail.com
@@ -19,21 +19,19 @@ $\color{red}{\text{Compile a set of virulence-related genes in the AFPN02.1 stra
 First I went to the VFPB website (http://www.mgc.ac.cn/VFs/main.htm) and looked up 'virulence factors' associated with E. coli strains. The most common of these are: adherence, toxin, invasion, Type III translocated protein, and immune evasion. I can use these terms to annotate genes associated with virulence. 
 
 [VFDB website, Escherichia Coli](http://www.mgc.ac.cn/cgi-bin/VFs/genus.cgi?Genus=Escherichia)
-\
-\
+
 $\color{red}{\text{a) Assemble a set of virulence-associated genes from public source or publication}}$
- \
- \
+ 
  
 From VFDB I was able to download a database of DNA sequences of core set of experimentally-verified virulence-associated genes. This will be used to extract genes (and relevant sequences) for the associated adhesion genes for searching and annotating the AFPN02.1 genome. (VFDB_setA_nt.fas)
 (http://www.mgc.ac.cn/VFs/download.htm) (Jin, *et.al.*, 2007). 
 
-Using the information on the VFDB website (http://www.mgc.ac.cn/cgi-bin/VFs/genus.cgi?Genus=Escherichia), Brzuszkiewicz, *et. al.* (2011), and the spreadsheet of virulence genes from EHEC and EAEC strains from Cheung, *et.al*, (2011), I compiled a list of 18 pertinent virulence-related genes. These are mostly related to adhesion and toxin production. I used these to select virulence-related genes from the VFDB.
-![virulence spreadsheet](spreadsheet.png){width=75%}
-[Brzuszkiewicz, et al, 2011]
+Using the information on the VFDB website (http://www.mgc.ac.cn/cgi-bin/VFs/genus.cgi?Genus=Escherichia), Brzuszkiewicz, *et. al.* (2011), and the spreadsheet of virulence genes from EHEC and EAEC strains from Cheung, *et.al*, (2011), I compiled a list of 18 pertinent virulence-related genes. There were many more genes available in the database, but these genes were selected because they are related to adhesion and toxin production. I used the gene names to select virulence-related genes from the VFDB.
 
-\
-\
+
+![virulence spreadsheet](spreadsheet.png){width=75%}
+\begin{center} Virulence genes (Brzuszkiewicz, et al, 2011) \end{center}
+
 
 
 ```bash
@@ -54,8 +52,7 @@ cat temp.fa | sed 's/)\s.*$//g' > virulence_vfdb_editedgenes.fa
 mv virulence_vfdb_editedgenes.fa vfdb_virulence_genes.fa
 ```
 
-\
-\
+
 
 $\color{red}{\text{b) Build a separate set of virulence-associated genes in the annotation file created for AFPN02.1}}$
 
@@ -89,21 +86,27 @@ cat present_in_AFPN02_virulence_genes.fasta vfdb_virulence_genes.fa > final_comp
 cp present_in_AFPN02_virulence_genes.fasta vfdb_virulence_genes.fa final_comparison_virulence.fasta ${st_path}/results_GC/wholeGenomeExamples
 
 ```
-\
-\
+
+
+
 
 $\color{red}{\text{c) Use BRIG to visualise which of the virulence genes are present/absent in E. coli strains}}$
-\
-\
+
+
+
 
 To run brig, use the following command:
 
 ```bash
 /s/software/brig/BRIG-0.95-dist/brig.sh
 ```
-<p>
+
 ![Brig analysis](final_comparison_virulence.fasta.png)
-</p>
+\begin{center} BRIG: Blast Ring Image Generator (brig.sourceforge.net) \end{center}
+
+
+
+
 Most of the virulence genes were present in AFPN02.1. However, hylA was only identified with a short sequence, aggA was completely missing, esp was mostly missing, though some parts were  present at lower identity, fimH was completely missing, stxA was more weakly identified, and agg3B was more weakly identified. The other shiga-toxin genes, stx2A/B were present in the AFPN02.1 strain, as well as in the sakai strain, which is a EHEC (enterohemmoragic) strain, but isn't present at all in the other strains, except for short regions of identity with the other EHEC strain. The EHEC strain seemed the most different from the other strains, with only short regions of identity spread out over the genome, however, it seemed there were hits in all of the genes. 
 
 
@@ -121,5 +124,7 @@ and study this}}$ $\color{red}{\text{gene/operon in more detail including its bi
 Brzuszkiewicz, E., Thürmer, A., Schuldes, J., Leimbach, A., Liesegang, H., Meyer, F.-D., … Daniel, R. (2011). Genome sequence analyses of two isolates from the recent Escherichia coli outbreak in Germany reveal the emergence of a new pathotype: Entero-Aggregative-Haemorrhagic Escherichia coli (EAHEC). Archives of Microbiology, 193(12), 883–891. https://doi.org/10.1007/s00203-011-0725-6
 
 Cheung, M., Li, L., Nong, W., & Kwan, H. (2011). 2011 German Escherichia coli O104:H4 outbreak: Whole-genome phylogeny without alignment. BMC Research Notes, 4(December). https://doi.org/10.1186/1756-0500-4-533
+
+'Enteroaggregative Escherichia coli.' Wikipedia: The Free Encyclopedia. Wikipedia, The Free Encyclopedia, 28 January 2019, en.wikipedia.org/wiki/Enteroaggregative_Escherichia_coli
 
 Jin, Q., Sun, L., Yang, J., Chen, L., & Yu, J. (2007). VFDB 2008 release: an enhanced web-based resource for comparative pathogenomics. Nucleic Acids Research, 36(Database), D539–D542. https://doi.org/10.1093/nar/gkm951
