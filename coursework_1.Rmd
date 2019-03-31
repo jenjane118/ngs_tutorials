@@ -2,10 +2,11 @@
 title: "Coursework 1"
 author: "Jennifer J. Stiens"
 output:
+  pdf_document: default
   html_document:
     keep_md: yes
-  pdf_document: default
   header-includes: \usepackage{color}
+fontsize: 12pt
 ---
 
 

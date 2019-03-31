@@ -2,11 +2,11 @@
 title: "Coursework 2"
 author: "Jennifer J. Stiens"
 output:
-  html_document:
-    
-    keep_md: yes
   pdf_document: default
+  html_document:
+    keep_md: yes
   header-includes: \usepackage{color}
+fontsize: 10pt
 ---
 ## Jennifer Stiens
 j.j.stiens@gmail.com
@@ -14,25 +14,25 @@ j.j.stiens@gmail.com
 [github.com/jenjane118/ngs_tutorials/coursework_1.md](https://github.com/jenjane118/ngs_tutorials)
 
 ##Question 1
-$\color{red}{\text{Compile a set of virulence-related genes in the AFPN02.1 strain and other E. coli strains and compare them}}$
+$\color{blue}{\text{Compile a set of virulence-related genes in the AFPN02.1 strain and other E. coli strains and compare them.}}$
 
 First I went to the VFPB website (http://www.mgc.ac.cn/VFs/main.htm) and looked up 'virulence factors' associated with E. coli strains. The most common of these are: adherence, toxin, invasion, Type III translocated protein, and immune evasion. I can use these terms to annotate genes associated with virulence. 
 
 [VFDB website, Escherichia Coli](http://www.mgc.ac.cn/cgi-bin/VFs/genus.cgi?Genus=Escherichia)
-
-$\color{red}{\text{a) Assemble a set of virulence-associated genes from public source or publication}}$
- 
+\
+\
+$\color{blue}{\text{a) Assemble a set of virulence-associated genes from public source or publication}}$
+\ 
  
 From VFDB I was able to download a database of DNA sequences of core set of experimentally-verified virulence-associated genes. This will be used to extract genes (and relevant sequences) for the associated adhesion genes for searching and annotating the AFPN02.1 genome. (VFDB_setA_nt.fas)
 (http://www.mgc.ac.cn/VFs/download.htm) (Jin, *et.al.*, 2007). 
 
 Using the information on the VFDB website (http://www.mgc.ac.cn/cgi-bin/VFs/genus.cgi?Genus=Escherichia), Brzuszkiewicz, *et. al.* (2011), and the spreadsheet of virulence genes from EHEC and EAEC strains from Cheung, *et.al*, (2011), I compiled a list of 18 pertinent virulence-related genes. There were many more genes available in the database, but these genes were selected because they are related to adhesion and toxin production. I used the gene names to select virulence-related genes from the VFDB.
-
-
-![virulence spreadsheet](spreadsheet.png){width=75%}
+\
+![virulence spreadsheet](spreadsheet.png)
 \begin{center} Virulence genes (Brzuszkiewicz, et al, 2011) \end{center}
-
-
+\
+\
 ```{bash vfdb file, eval=FALSE}
 ## help for this code came from (https://infoplatter.wordpress.com/2013/10/15/extracting-specific-fasta-records-from-a-multi-fasta-file/)
 ## grabs all ecoli files and sequences
@@ -52,7 +52,7 @@ mv virulence_vfdb_editedgenes.fa vfdb_virulence_genes.fa
 
 
 
-$\color{red}{\text{b) Build a separate set of virulence-associated genes in the annotation file created for AFPN02.1}}$
+$\color{blue}{\text{b) Build a separate set of virulence-associated genes in the annotation file created for AFPN02.1}}$
 
 The next step is to work with the annotation.gff file to retrieve annotations based on 'virulence', 'adherence', 'toxin', and 'Type III' (short for Type III aggregative adherence fimbriae) and convert into .bed format.
 
@@ -84,7 +84,7 @@ cp present_in_AFPN02_virulence_genes.fasta vfdb_virulence_genes.fa final_compari
 
 
 
-$\color{red}{\text{c) Use BRIG to visualise which of the virulence genes are present/absent in E. coli strains}}$
+$\color{blue}{\text{c) Use BRIG to visualise which of the virulence genes are present/absent in E. coli strains}}$
 
 
 
@@ -106,10 +106,10 @@ Most of the virulence genes were present in AFPN02.1. However, hylA was only ide
 ## Question 2
 
 
-$\color{red}{\text{Select ONE of the virulence genes (or if you prefer one operon) present in AFPN02.1
-and study this}}$ $\color{red}{\text{gene/operon in more detail including its biological action/mechanism phylogeny.}}$
+$\color{blue}{\text{Select ONE of the virulence genes (or if you prefer one operon) present in AFPN02.1
+and study}}$ $\color{blue}{\text{this gene/operon in more detail including its biological action/mechanism phylogeny.}}$
 
-
+I have chosen to take a closer look at the gene *aggR*, 'aggregative regulator', a putative transcriptional activator that regulates many virulence factors including genes for adherence and toxin production (www.uniprot.org/uniprot/P43464). The *aggR* gene is part of a family of AraC transcriptional activators, regulatory proteins that bind DNA and control the expression of a whole host of other genes ("Enteroaggregative Escherichia coli"). The product of aggR is a DNA binding protein is aobut 30KDa in size, with a conserved helix-turn-helix motif.
 
 
 ## References
@@ -121,3 +121,8 @@ Cheung, M., Li, L., Nong, W., & Kwan, H. (2011). 2011 German Escherichia coli O1
 'Enteroaggregative Escherichia coli.' Wikipedia: The Free Encyclopedia. Wikipedia, The Free Encyclopedia, 28 January 2019, en.wikipedia.org/wiki/Enteroaggregative_Escherichia_coli
 
 Jin, Q., Sun, L., Yang, J., Chen, L., & Yu, J. (2007). VFDB 2008 release: an enhanced web-based resource for comparative pathogenomics. Nucleic Acids Research, 36(Database), D539–D542. https://doi.org/10.1093/nar/gkm951
+
+Morin, N., Santiago, A. E., Ernst, R. K., Guillot, S. J., & Nataro, J. P. (2013). Characterization of the AggR regulon in enteroaggregative Escherichia coli. Infection and Immunity, 81(1), 122–132. https://doi.org/10.1128/IAI.00676-12
+
+The UniProt Consortium. UniProt: a worldwide hub of protein knowledge. 
+Nucleic Acids Res. 47: D506-515 (2019). (www.uniprot.org/uniprot/P43464)
