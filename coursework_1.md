@@ -6,6 +6,8 @@ output:
     keep_md: yes
   pdf_document: default
   header-includes: \usepackage{color}
+fontsize: 12pt
+fig_width: 5
 ---
 
 
