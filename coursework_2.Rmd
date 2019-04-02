@@ -116,7 +116,7 @@ To run brig, use the following command:
 \
 
 
-Most of the virulence genes were present in AFPN02.1. However, hylA was only identified by a short fragment in one of the locations and with two short fragments in the other version. (I compared the two sequences labelled hlyA in my file and they do have significantly different sequences. I can only assume they are from different sources and the further annotation was lost when I tidied up the data). Of the adhesion genes, aggA and aggB were present at lower identies, only a portion of fimH was completely present, and agg3B was more weakly identified, though aggR was present at 90% identity. Stx1A was present at lower identity, but stx1B was completely missing. The other shiga-toxin genes, stx2A/B, were present in the AFPN02.1 strain, as well as in the sakai strain, which is a EHEC (enterohemmoraghic) strain, but isn't present at all in the other strains, except for short regions of identity with the other EHEC strain. EspP was mostly missing, though some parts were  present at lower identity.  The EHEC strain seemed the most different from the other strains, with only short regions of identity spread out over the genome, however, it seemed there were hits in all of the genes. 
+Most of the virulence genes were present in AFPN02.1. However, hylA was only identified by a short fragment in one of the locations and with two short fragments in the other. (I compared the two sequences labelled hlyA in my file and they do have significantly different sequences. I can only assume they are from different sources and the further annotation was lost when I tidied up the data). Of the adhesion genes, aggA and aggB were present at lower identies, only a portion of fimH was completely present, and agg3B was more weakly identified, though aggR was present at 90% identity. Stx1A was present at lower identity, but stx1B was completely missing. The other shiga-toxin genes, stx2A/B, were present in the AFPN02.1 strain, as well as in the sakai strain, which is a EHEC (enterohemmoraghic) strain, but isn't present at all in the other strains, except for short regions of identity with the other EHEC strain. EspP was mostly missing, though some parts were  present at lower identity.  The EHEC strain seemed the most different from the other strains, with only short regions of identity spread out over the genome, however, it seemed there were hits in all of the genes. 
 
 
 ## Question 2
@@ -168,6 +168,11 @@ and used it in a psi-blast query (https://blast.ncbi.nlm.nih.gov/Blast.cgi?PROGR
 ![psi-blast tree](psi-blast_tree.png)
 \
 \begin{center}Figure 3. Psi-blastp results and phylogenetic tree for AggR protein. \end{center}
+
+
+
+
+
 
 ## References
 

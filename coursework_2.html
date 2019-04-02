@@ -230,7 +230,7 @@ cat temp.fa | sed 's/)\s.*$//g' &gt; virulence_vfdb_editedgenes.fa
 cat virulence_vfdb_editedgenes.fa | sed -e 's/^ *//; s/ *$//; /^$/d' \
 &gt; vfdb_virulence_genes.fa</code></pre>
 <p><span class="math inline">\(\color{blue}{\text{b) Build a separate set of virulence-associated genes in the annotation file created for AFPN02.1}}\)</span></p>
-<p>The next step is to work with the annotation.gff file to retrieve annotations based on ‘virulence’, ‘adherence’, ‘toxin’, and ‘Type III’ (short for Type III aggregative adherence fimbriae) and convert into .bed format.</p>
+<p>The next step is to work with the annotation.gff file to retrieve annotations based on ‘virulence’, ‘adherence’, ‘toxin’, ‘invasion’ and ‘Type III’ (short for Type III aggregative adherence fimbriae) and convert into .bed format.</p>
 <pre class="bash"><code>cat annotation.gff | grep -E 'virulence|adherence|toxin|invasion|Type III' | 
 awk 'BEGIN {FS=&quot;\t&quot;}  split($9, captured, /[(=);]/) &gt;=10  {print &quot;sequence1&quot; 
 &quot;\t&quot; $4 &quot;\t&quot; $5 &quot;\t&quot; captured[10] &quot;\t&quot; captured[4] &quot;\t&quot; $7}'
@@ -246,8 +246,7 @@ present_in_AFPN02_virulence_genes.bed -fo present_in_AFPN02_virulence_genes.fast
 &gt; present_in_AFRN02_virulence_genes.fasta
 # to remove extra info in square brackets
 cat present_in_AFPN02_virulence_genes.fasta | sed '/[.*]/d' &gt; \
-present_in_AFPN02_virulence_genes.fasta
-# </code></pre>
+present_in_AFPN02_virulence_genes.fasta</code></pre>
 <p>Then we have to combine the two files:</p>
 <pre class="bash"><code>cat present_in_AFPN02_virulence_genes.fasta vfdb_virulence_genes.fa \
 &gt; final_comparison_virulence.fasta
@@ -264,7 +263,7 @@ final_comparison_virulence.fasta ${st_path}/results_GC/wholeGenomeExamples
 
 <p><br />
 </p>
-<p>Most of the virulence genes were present in AFPN02.1. However, hylA was only identified with a short sequence, aggA was completely missing, esp was mostly missing, though some parts were present at lower identity, fimH was completely missing, stxA was more weakly identified, and agg3B was more weakly identified. The other shiga-toxin genes, stx2A/B were present in the AFPN02.1 strain, as well as in the sakai strain, which is a EHEC (enterohemmoraghic) strain, but isn’t present at all in the other strains, except for short regions of identity with the other EHEC strain. The EHEC strain seemed the most different from the other strains, with only short regions of identity spread out over the genome, however, it seemed there were hits in all of the genes.</p>
+<p>Most of the virulence genes were present in AFPN02.1. However, hylA was only identified by a short fragment in one of the locations and with two short fragments in the other. (I compared the two sequences labelled hlyA in my file and they do have significantly different sequences. I can only assume they are from different sources and the further annotation was lost when I tidied up the data). Of the adhesion genes, aggA and aggB were present at lower identies, only a portion of fimH was completely present, and agg3B was more weakly identified, though aggR was present at 90% identity. Stx1A was present at lower identity, but stx1B was completely missing. The other shiga-toxin genes, stx2A/B, were present in the AFPN02.1 strain, as well as in the sakai strain, which is a EHEC (enterohemmoraghic) strain, but isn’t present at all in the other strains, except for short regions of identity with the other EHEC strain. EspP was mostly missing, though some parts were present at lower identity. The EHEC strain seemed the most different from the other strains, with only short regions of identity spread out over the genome, however, it seemed there were hits in all of the genes.</p>
 </div>
 <div id="question-2" class="section level2">
 <h2>Question 2</h2>

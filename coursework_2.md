@@ -64,7 +64,7 @@ cat virulence_vfdb_editedgenes.fa | sed -e 's/^ *//; s/ *$//; /^$/d' \
 
 $\color{blue}{\text{b) Build a separate set of virulence-associated genes in the annotation file created for AFPN02.1}}$
 
-The next step is to work with the annotation.gff file to retrieve annotations based on 'virulence', 'adherence', 'toxin', and 'Type III' (short for Type III aggregative adherence fimbriae) and convert into .bed format.
+The next step is to work with the annotation.gff file to retrieve annotations based on 'virulence', 'adherence', 'toxin', 'invasion' and 'Type III' (short for Type III aggregative adherence fimbriae) and convert into .bed format.
 
 
 
@@ -95,7 +95,6 @@ cat present_in_AFPN02_virulence_genes.fasta | sed 's/(.*//g' \
 # to remove extra info in square brackets
 cat present_in_AFPN02_virulence_genes.fasta | sed '/[.*]/d' > \
 present_in_AFPN02_virulence_genes.fasta
-# 
 ```
 
 
@@ -124,7 +123,7 @@ To run brig, use the following command:
 \
 
 
-Most of the virulence genes were present in AFPN02.1. However, hylA was only identified with a short sequence, aggA was completely missing, esp was mostly missing, though some parts were  present at lower identity, fimH was completely missing, stxA was more weakly identified, and agg3B was more weakly identified. The other shiga-toxin genes, stx2A/B were present in the AFPN02.1 strain, as well as in the sakai strain, which is a EHEC (enterohemmoraghic) strain, but isn't present at all in the other strains, except for short regions of identity with the other EHEC strain. The EHEC strain seemed the most different from the other strains, with only short regions of identity spread out over the genome, however, it seemed there were hits in all of the genes. 
+Most of the virulence genes were present in AFPN02.1. However, hylA was only identified by a short fragment in one of the locations and with two short fragments in the other. (I compared the two sequences labelled hlyA in my file and they do have significantly different sequences. I can only assume they are from different sources and the further annotation was lost when I tidied up the data). Of the adhesion genes, aggA and aggB were present at lower identies, only a portion of fimH was completely present, and agg3B was more weakly identified, though aggR was present at 90% identity. Stx1A was present at lower identity, but stx1B was completely missing. The other shiga-toxin genes, stx2A/B, were present in the AFPN02.1 strain, as well as in the sakai strain, which is a EHEC (enterohemmoraghic) strain, but isn't present at all in the other strains, except for short regions of identity with the other EHEC strain. EspP was mostly missing, though some parts were  present at lower identity.  The EHEC strain seemed the most different from the other strains, with only short regions of identity spread out over the genome, however, it seemed there were hits in all of the genes. 
 
 
 ## Question 2
@@ -177,6 +176,11 @@ and used it in a psi-blast query (https://blast.ncbi.nlm.nih.gov/Blast.cgi?PROGR
 ![psi-blast tree](psi-blast_tree.png)
 \
 \begin{center}Figure 3. Psi-blastp results and phylogenetic tree for AggR protein. \end{center}
+
+
+
+
+
 
 ## References
 
