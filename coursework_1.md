@@ -5,7 +5,6 @@ output:
   html_document:
     keep_md: yes
   pdf_document: default
-  header-includes: \usepackage{color}
 fontsize: 12pt
 fig_width: 5
 ---
@@ -30,7 +29,7 @@ First I will generate a Fastqc report of the trimmed_Negative.fq sequence file.
 <!-- ![sequence quality plot](/d/projects/u/sj003/course_materials/fastq/coursework_1/trimmed_Negative_fastqc.png) -->
 
 \
-![sequence quality plot](trimmed_Negative_fastqc.png){width=75%}
+![sequence quality plot](trimmed_Negative_fastqc.png)
 \
 
 [fastqc report original](/d/projects/u/sj003/course_materials/fastq/coursework_1/trimmed_Negative_fastqc.html)
@@ -52,7 +51,7 @@ Running Fastqc again, you can see an improvement in the sequence quality.
 ```
 
 \
-![sequence quality plot](trimmedNs_negative_fastqc.png){ width=75%}
+![sequence quality plot](trimmedNs_negative_fastqc.png)
 \
 
 
@@ -80,7 +79,7 @@ The text file can be examined on the bash terminal, and the .sam file can be ana
 
 
 \
-![multiq alignment scores](Neg_v_Pos_multiq.png){ width=75% }
+![multiq alignment scores](Neg_v_Pos_multiq.png)
 \
 
 
@@ -94,7 +93,7 @@ time /s/software/anaconda/python3/bin/bowtie2 --end-to-end --trim5 5 --trim3 4 -
 
 
 \
-![multiqc sequence stats](cw1_q1_multiqc.png){width=75%}
+![multiqc sequence stats](cw1_q1_multiqc.png)
 \
 
 This gives the same alignment results as using cutadapt.
@@ -116,7 +115,8 @@ Negative3.sam     aligned with trimming Ns with bowtie
 
 Negative4.sam     local alignment
 
-In order to save time running samtools for each file, I wrote a bash script (d/projects/u/sj003/results_cw1/samtools_bash.sh)
+In order to save time running samtools for each file, 
+I wrote a bash script (d/projects/u/sj003/results_cw1/samtools_bash.sh)
 
 
 ```bash
@@ -131,7 +131,6 @@ SAMFILES=*.sam
 for file in $SAMFILES
 do
   filename=$(basename "$file")
-  extension="${filename##*.}"
   filename="${filename%.*}"
   
   echo "Sort file:        $file"
@@ -195,7 +194,7 @@ We can examine the fastqc report of the edited sequence:
 /s/software/fastqc/v0.11.8/FastQC/fastqc trimmedns_BQ.fq
 ```
 \
-![fastqc sequence quality](trimmedns_BQ_fastqc.png){ width=75% }
+![fastqc sequence quality](trimmedns_BQ_fastqc.png)
 \
 
 

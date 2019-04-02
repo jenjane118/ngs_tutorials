@@ -149,7 +149,7 @@ sequence file.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics[width=0.75000\textwidth]{trimmed_Negative_fastqc.png}\\
+\includegraphics{trimmed_Negative_fastqc.png}\\
 \href{/d/projects/u/sj003/course_materials/fastq/coursework_1/trimmed_Negative_fastqc.html}{fastqc
 report original}
 
@@ -174,7 +174,7 @@ quality.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics[width=0.75000\textwidth]{trimmedNs_negative_fastqc.png}\\
+\includegraphics{trimmedNs_negative_fastqc.png}\\
 
 \href{/d/projects/u/sj003/course_materials/fastq/coursework_1/trimmedNs_Negative_fastqc.html}{fastqc
 report trimmed}
@@ -208,7 +208,7 @@ alignment (Negative2) has the same stats as Positive:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics[width=0.75000\textwidth]{Neg_v_Pos_multiq.png}\\
+\includegraphics{Neg_v_Pos_multiq.png}\\
 
 Another option is to align the Negative file using options in Bowtie2
 that ignore the first and last bases when aligning:
@@ -219,7 +219,7 @@ that ignore the first and last bases when aligning:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics[width=0.75000\textwidth]{cw1_q1_multiqc.png}\\
+\includegraphics{cw1_q1_multiqc.png}\\
 This gives the same alignment results as using cutadapt.
 
 I can also try a local alignment on the file where I cut the Ns off to
@@ -263,7 +263,6 @@ script (d/projects/u/sj003/results\_cw1/samtools\_bash.sh)
 \KeywordTok{for} \FunctionTok{file}\NormalTok{ in }\VariableTok{$SAMFILES}
 \KeywordTok{do}
   \VariableTok{filename=$(}\FunctionTok{basename} \StringTok{"}\VariableTok{$file}\StringTok{"}\VariableTok{)}
-  \VariableTok{extension=}\StringTok{"}\VariableTok{$\{filename##}\NormalTok{*.}\VariableTok{\}}\StringTok{"}
   \VariableTok{filename=}\StringTok{"}\VariableTok{$\{filename%}\NormalTok{.*}\VariableTok{\}}\StringTok{"}
   
   \BuiltInTok{echo} \StringTok{"Sort file:        }\VariableTok{$file}\StringTok{"}
@@ -345,7 +344,7 @@ We can examine the fastqc report of the edited sequence:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics[width=0.75000\textwidth]{trimmedns_BQ_fastqc.png}\\
+\includegraphics{trimmedns_BQ_fastqc.png}\\
 
 This shows that though the quality of the ends is no longer as poor, the
 entire sequence has rather low sequence quality, with an average Phred
