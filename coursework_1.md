@@ -26,7 +26,7 @@ First I will generate a Fastqc report of the trimmed_Negative.fq sequence file.
 /s/software/fastqc/v0.11.8/FastQC/fastqc trimmed_Negative.fq
 
 ```
-<!-- ![sequence quality plot](/d/projects/u/sj003/course_materials/fastq/coursework_1/trimmed_Negative_fastqc.png) -->
+
 
 \
 ![sequence quality plot](trimmed_Negative_fastqc.png)
@@ -38,7 +38,8 @@ This shows very low sequence quality at the start and end of each read. Looking 
 
 
 ```bash
-/s/software/anaconda/python3/bin/cutadapt --trim-n -o trimmedNs_negative.fq trimmed_Negative.fq
+/s/software/anaconda/python3/bin/cutadapt --trim-n -o trimmedNs_negative.fq \
+trimmed_Negative.fq
 less trimmedNs_negative.fq
 
 ```
@@ -63,11 +64,17 @@ To align both the original file and the trimmed file using bowtie2 against the r
 
 
 ```bash
-time /s/software/anaconda/python3/bin/bowtie2 --end-to-end -x ${st_path}/course_materials/genomes/AFPN02.1/AFPN02.1_merge -q ${st_path}/course_materials/fastq/trimmed_Negative.fq -S Negative.sam 2> Negative_bowtie_stats.txt
+time /s/software/anaconda/python3/bin/bowtie2 --end-to-end -x \
+${st_path}/course_materials/genomes/AFPN02.1/AFPN02.1_merge -q \
+${st_path}/course_materials/fastq/trimmed_Negative.fq -S Negative.sam 2> \
+Negative_bowtie_stats.txt
 ```
 
 ```bash
-time /s/software/anaconda/python3/bin/bowtie2 --end-to-end -x ${st_path}/course_materials/genomes/AFPN02.1/AFPN02.1_merge -q ${st_path}/course_materials/fastq/trimmedNs_Negative.fq -S Negative2.sam 2> Negative2_bowtie_stats.txt
+time /s/software/anaconda/python3/bin/bowtie2 --end-to-end -x \
+${st_path}/course_materials/genomes/AFPN02.1/AFPN02.1_merge -q \
+${st_path}/course_materials/fastq/trimmedNs_Negative.fq -S Negative2.sam 2> \
+Negative2_bowtie_stats.txt
 ```
 
 The text file can be examined on the bash terminal, and the .sam file can be analysed in a multiqc display showing that the new Negative alignment (Negative2) has the same stats as Positive:
@@ -88,7 +95,10 @@ Another option is to align the Negative file using options in Bowtie2 that ignor
 
 
 ```bash
-time /s/software/anaconda/python3/bin/bowtie2 --end-to-end --trim5 5 --trim3 4 -x ${st_path}/course_materials/genomes/AFPN02.1/AFPN02.1_merge -q ${st_path}/course_materials/fastq/trimmed_Negative.fq -S Negative3.sam 2> Negative3_bowtie_stats.txt
+time /s/software/anaconda/python3/bin/bowtie2 --end-to-end --trim5 5 --trim3 4 \
+-x ${st_path}/course_materials/genomes/AFPN02.1/AFPN02.1_merge -q \
+${st_path}/course_materials/fastq/trimmed_Negative.fq -S Negative3.sam 2> \
+Negative3_bowtie_stats.txt
 ```
 
 
@@ -102,7 +112,10 @@ I can also try a local alignment on the file where I cut the Ns off to see if th
 
 
 ```bash
-time /s/software/anaconda/python3/bin/bowtie2 --local -x ${st_path}/course_materials/genomes/AFPN02.1/AFPN02.1_merge -q ${st_path}/course_materials/fastq/trimmedNs_Negative.fq -S Negative4.sam 2> Negative4_bowtie_stats.txt
+time /s/software/anaconda/python3/bin/bowtie2 --local -x \
+${st_path}/course_materials/genomes/AFPN02.1/AFPN02.1_merge -q \
+${st_path}/course_materials/fastq/trimmedNs_Negative.fq -S Negative4.sam 2> \
+Negative4_bowtie_stats.txt
 ```
 
 c) samtools stats:
@@ -116,7 +129,8 @@ Negative3.sam     aligned with trimming Ns with bowtie
 Negative4.sam     local alignment
 
 In order to save time running samtools for each file, 
-I wrote a bash script (d/projects/u/sj003/results_cw1/samtools_bash.sh)
+I wrote a bash script 
+(d/projects/u/sj003/results_cw1/samtools_bash.sh)
 
 
 ```bash
@@ -204,7 +218,10 @@ Looking at the alignment of BQ with the bacterial genome reference sequence, we 
 
 
 ```bash
-time /s/software/anaconda/python3/bin/bowtie2 --end-to-end -x ${st_path}/course_materials/genomes/AFPN02.1/AFPN02.1_merge -q ${st_path}/course_materials/fastq/trimmedns_BQ.fq -S trimmednsBQ.sam 2> trimmednsBQ_bowtie_stats.txt
+time /s/software/anaconda/python3/bin/bowtie2 --end-to-end -x \
+${st_path}/course_materials/genomes/AFPN02.1/AFPN02.1_merge -q \
+${st_path}/course_materials/fastq/trimmedns_BQ.fq -S trimmednsBQ.sam 2> \
+trimmednsBQ_bowtie_stats.txt
 less trimmednsBQ_bowtie_stats.txt
 ```
 
@@ -212,7 +229,10 @@ I also performed bowtie2 alignment with the 'very sensitive local' setting to in
 
 
 ```bash
-time /s/software/anaconda/python3/bin/bowtie2 --very-sensitive-local -x ${st_path}/course_materials/genomes/AFPN02.1/AFPN02.1_merge -q ${st_path}/course_materials/fastq/trimmedns_BQ.fq -S trimmednsBQ_vsl.sam 2> trimmednsBQvsl_bowtie_stats.txt
+time /s/software/anaconda/python3/bin/bowtie2 --very-sensitive-local -x \
+${st_path}/course_materials/genomes/AFPN02.1/AFPN02.1_merge -q \
+${st_path}/course_materials/fastq/trimmedns_BQ.fq -S trimmednsBQ_vsl.sam 2> \
+trimmednsBQvsl_bowtie_stats.txt
 less trimmednsBQvsl_bowtie_stats.txt
 ```
 
@@ -220,7 +240,10 @@ The 'very sensitive' setting has preset parameters that are designed to maximise
 
 
 ```bash
-time /s/software/anaconda/python3/bin/bowtie2 --local -D 20 -R 3 -N 1 -L 20 -i S,1,0.50 -x ${st_path}/course_materials/genomes/AFPN02.1/AFPN02.1_merge -q ${st_path}/course_materials/fastq/trimmedns_BQ.fq -S trimmednsBQ_cust.sam 2> trimmednsBQcust_bowtie_stats.txt
+time /s/software/anaconda/python3/bin/bowtie2 --local -D 20 -R 3 -N 1 -L 20 \
+-i S,1,0.50 -x ${st_path}/course_materials/genomes/AFPN02.1/AFPN02.1_merge -q \
+${st_path}/course_materials/fastq/trimmedns_BQ.fq -S trimmednsBQ_cust.sam 2> \
+trimmednsBQcust_bowtie_stats.txt
 less trimmednsBQcust_bowtie_stats.txt
 ```
 
@@ -266,7 +289,8 @@ The report shows that there is a trade-off between alignment rate and error rate
 
 ```bash
 # for uniquely mapped reads (with MAPQ < 10); all other files in multiBQ file (-U)
-/s/software/samtools/v1.9/bin/samtools view -bq 10 trimmednsBQ.bam > uniqueBQ.bam -U multiBQ.bam
+/s/software/samtools/v1.9/bin/samtools view -bq 10 trimmednsBQ.bam > uniqueBQ.bam \
+-U multiBQ.bam
 ```
 
 
@@ -289,7 +313,10 @@ Using bowtie2 -k option allows us to report the sequences with the desired numbe
 
 ```bash
 ## filters for only unique reads (-k) but still contains unaligned seqs
-time /s/software/anaconda/python3/bin/bowtie2 --end-to-end -k 1 -x ${st_path}/course_materials/genomes/AFPN02.1/AFPN02.1_merge -q ${st_path}/course_materials/fastq/trimmedns_BQ.fq -S trimmednsBQ2.sam 2> trimmednsBQ2_stats.txt
+time /s/software/anaconda/python3/bin/bowtie2 --end-to-end -k 1 -x \
+${st_path}/course_materials/genomes/AFPN02.1/AFPN02.1_merge -q \
+${st_path}/course_materials/fastq/trimmedns_BQ.fq -S trimmednsBQ2.sam 2> \
+trimmednsBQ2_stats.txt
 
 ```
 
@@ -305,7 +332,7 @@ Then I cut and pasted 10 sequences from the fasta file into blastn window and se
 [blastn website](https://blast.ncbi.nlm.nih.gov)
 
 \
-![BLAST result sample](blast.png){width=75%}
+![BLAST result sample](blast.png)
 \
 
 

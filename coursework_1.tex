@@ -160,7 +160,8 @@ need to be removed. To do this, we use cutadapt to process each read.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\ExtensionTok{/s/software/anaconda/python3/bin/cutadapt}\NormalTok{ --trim-n -o trimmedNs_negative.fq trimmed_Negative.fq}
+\ExtensionTok{/s/software/anaconda/python3/bin/cutadapt}\NormalTok{ --trim-n -o trimmedNs_negative.fq \textbackslash{}}
+\NormalTok{trimmed_Negative.fq}
 \FunctionTok{less}\NormalTok{ trimmedNs_negative.fq}
 \end{Highlighting}
 \end{Shaded}
@@ -188,13 +189,19 @@ for further analysis:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\BuiltInTok{time}\NormalTok{ /s/software/anaconda/python3/bin/bowtie2 --end-to-end -x }\VariableTok{$\{st_path\}}\NormalTok{/course_materials/genomes/AFPN02.1/AFPN02.1_merge -q }\VariableTok{$\{st_path\}}\NormalTok{/course_materials/fastq/trimmed_Negative.fq -S Negative.sam }\OperatorTok{2>}\NormalTok{ Negative_bowtie_stats.txt}
+\BuiltInTok{time}\NormalTok{ /s/software/anaconda/python3/bin/bowtie2 --end-to-end -x \textbackslash{}}
+\VariableTok{$\{st_path\}}\NormalTok{/course_materials/genomes/AFPN02.1/AFPN02.1_merge -q \textbackslash{}}
+\VariableTok{$\{st_path\}}\NormalTok{/course_materials/fastq/trimmed_Negative.fq -S Negative.sam }\OperatorTok{2>}\NormalTok{ \textbackslash{}}
+\NormalTok{Negative_bowtie_stats.txt}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\BuiltInTok{time}\NormalTok{ /s/software/anaconda/python3/bin/bowtie2 --end-to-end -x }\VariableTok{$\{st_path\}}\NormalTok{/course_materials/genomes/AFPN02.1/AFPN02.1_merge -q }\VariableTok{$\{st_path\}}\NormalTok{/course_materials/fastq/trimmedNs_Negative.fq -S Negative2.sam }\OperatorTok{2>}\NormalTok{ Negative2_bowtie_stats.txt}
+\BuiltInTok{time}\NormalTok{ /s/software/anaconda/python3/bin/bowtie2 --end-to-end -x \textbackslash{}}
+\VariableTok{$\{st_path\}}\NormalTok{/course_materials/genomes/AFPN02.1/AFPN02.1_merge -q \textbackslash{}}
+\VariableTok{$\{st_path\}}\NormalTok{/course_materials/fastq/trimmedNs_Negative.fq -S Negative2.sam }\OperatorTok{2>}\NormalTok{ \textbackslash{}}
+\NormalTok{Negative2_bowtie_stats.txt}
 \end{Highlighting}
 \end{Shaded}
 
@@ -215,7 +222,10 @@ that ignore the first and last bases when aligning:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\BuiltInTok{time}\NormalTok{ /s/software/anaconda/python3/bin/bowtie2 --end-to-end --trim5 5 --trim3 4 -x }\VariableTok{$\{st_path\}}\NormalTok{/course_materials/genomes/AFPN02.1/AFPN02.1_merge -q }\VariableTok{$\{st_path\}}\NormalTok{/course_materials/fastq/trimmed_Negative.fq -S Negative3.sam }\OperatorTok{2>}\NormalTok{ Negative3_bowtie_stats.txt}
+\BuiltInTok{time}\NormalTok{ /s/software/anaconda/python3/bin/bowtie2 --end-to-end --trim5 5 --trim3 4 \textbackslash{}}
+\NormalTok{-x }\VariableTok{$\{st_path\}}\NormalTok{/course_materials/genomes/AFPN02.1/AFPN02.1_merge -q \textbackslash{}}
+\VariableTok{$\{st_path\}}\NormalTok{/course_materials/fastq/trimmed_Negative.fq -S Negative3.sam }\OperatorTok{2>}\NormalTok{ \textbackslash{}}
+\NormalTok{Negative3_bowtie_stats.txt}
 \end{Highlighting}
 \end{Shaded}
 
@@ -227,7 +237,10 @@ see if this improves the alignment:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\BuiltInTok{time}\NormalTok{ /s/software/anaconda/python3/bin/bowtie2 --local -x }\VariableTok{$\{st_path\}}\NormalTok{/course_materials/genomes/AFPN02.1/AFPN02.1_merge -q }\VariableTok{$\{st_path\}}\NormalTok{/course_materials/fastq/trimmedNs_Negative.fq -S Negative4.sam }\OperatorTok{2>}\NormalTok{ Negative4_bowtie_stats.txt}
+\BuiltInTok{time}\NormalTok{ /s/software/anaconda/python3/bin/bowtie2 --local -x \textbackslash{}}
+\VariableTok{$\{st_path\}}\NormalTok{/course_materials/genomes/AFPN02.1/AFPN02.1_merge -q \textbackslash{}}
+\VariableTok{$\{st_path\}}\NormalTok{/course_materials/fastq/trimmedNs_Negative.fq -S Negative4.sam }\OperatorTok{2>}\NormalTok{ \textbackslash{}}
+\NormalTok{Negative4_bowtie_stats.txt}
 \end{Highlighting}
 \end{Shaded}
 
@@ -356,7 +369,10 @@ overall alignment rate of 82.82\%:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\BuiltInTok{time}\NormalTok{ /s/software/anaconda/python3/bin/bowtie2 --end-to-end -x }\VariableTok{$\{st_path\}}\NormalTok{/course_materials/genomes/AFPN02.1/AFPN02.1_merge -q }\VariableTok{$\{st_path\}}\NormalTok{/course_materials/fastq/trimmedns_BQ.fq -S trimmednsBQ.sam }\OperatorTok{2>}\NormalTok{ trimmednsBQ_bowtie_stats.txt}
+\BuiltInTok{time}\NormalTok{ /s/software/anaconda/python3/bin/bowtie2 --end-to-end -x \textbackslash{}}
+\VariableTok{$\{st_path\}}\NormalTok{/course_materials/genomes/AFPN02.1/AFPN02.1_merge -q \textbackslash{}}
+\VariableTok{$\{st_path\}}\NormalTok{/course_materials/fastq/trimmedns_BQ.fq -S trimmednsBQ.sam }\OperatorTok{2>}\NormalTok{ \textbackslash{}}
+\NormalTok{trimmednsBQ_bowtie_stats.txt}
 \FunctionTok{less}\NormalTok{ trimmednsBQ_bowtie_stats.txt}
 \end{Highlighting}
 \end{Shaded}
@@ -368,7 +384,10 @@ overall alignment rate up to 89.43\%.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\BuiltInTok{time}\NormalTok{ /s/software/anaconda/python3/bin/bowtie2 --very-sensitive-local -x }\VariableTok{$\{st_path\}}\NormalTok{/course_materials/genomes/AFPN02.1/AFPN02.1_merge -q }\VariableTok{$\{st_path\}}\NormalTok{/course_materials/fastq/trimmedns_BQ.fq -S trimmednsBQ_vsl.sam }\OperatorTok{2>}\NormalTok{ trimmednsBQvsl_bowtie_stats.txt}
+\BuiltInTok{time}\NormalTok{ /s/software/anaconda/python3/bin/bowtie2 --very-sensitive-local -x \textbackslash{}}
+\VariableTok{$\{st_path\}}\NormalTok{/course_materials/genomes/AFPN02.1/AFPN02.1_merge -q \textbackslash{}}
+\VariableTok{$\{st_path\}}\NormalTok{/course_materials/fastq/trimmedns_BQ.fq -S trimmednsBQ_vsl.sam }\OperatorTok{2>}\NormalTok{ \textbackslash{}}
+\NormalTok{trimmednsBQvsl_bowtie_stats.txt}
 \FunctionTok{less}\NormalTok{ trimmednsBQvsl_bowtie_stats.txt}
 \end{Highlighting}
 \end{Shaded}
@@ -384,7 +403,10 @@ but at what cost to the error rate?
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\BuiltInTok{time}\NormalTok{ /s/software/anaconda/python3/bin/bowtie2 --local -D 20 -R 3 -N 1 -L 20 -i S,1,0.50 -x }\VariableTok{$\{st_path\}}\NormalTok{/course_materials/genomes/AFPN02.1/AFPN02.1_merge -q }\VariableTok{$\{st_path\}}\NormalTok{/course_materials/fastq/trimmedns_BQ.fq -S trimmednsBQ_cust.sam }\OperatorTok{2>}\NormalTok{ trimmednsBQcust_bowtie_stats.txt}
+\BuiltInTok{time}\NormalTok{ /s/software/anaconda/python3/bin/bowtie2 --local -D 20 -R 3 -N 1 -L 20 \textbackslash{}}
+\NormalTok{-i S,1,0.50 -x }\VariableTok{$\{st_path\}}\NormalTok{/course_materials/genomes/AFPN02.1/AFPN02.1_merge -q \textbackslash{}}
+\VariableTok{$\{st_path\}}\NormalTok{/course_materials/fastq/trimmedns_BQ.fq -S trimmednsBQ_cust.sam }\OperatorTok{2>}\NormalTok{ \textbackslash{}}
+\NormalTok{trimmednsBQcust_bowtie_stats.txt}
 \FunctionTok{less}\NormalTok{ trimmednsBQcust_bowtie_stats.txt}
 \end{Highlighting}
 \end{Shaded}
@@ -444,7 +466,8 @@ only uniquely mapped reads}
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{# for uniquely mapped reads (with MAPQ < 10); all other files in multiBQ file (-U)}
-\ExtensionTok{/s/software/samtools/v1.9/bin/samtools}\NormalTok{ view -bq 10 trimmednsBQ.bam }\OperatorTok{>}\NormalTok{ uniqueBQ.bam -U multiBQ.bam}
+\ExtensionTok{/s/software/samtools/v1.9/bin/samtools}\NormalTok{ view -bq 10 trimmednsBQ.bam }\OperatorTok{>}\NormalTok{ uniqueBQ.bam \textbackslash{}}
+\NormalTok{-U multiBQ.bam}
 \end{Highlighting}
 \end{Shaded}
 
@@ -474,7 +497,10 @@ samtools, like I've done in b.
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{## filters for only unique reads (-k) but still contains unaligned seqs}
-\BuiltInTok{time}\NormalTok{ /s/software/anaconda/python3/bin/bowtie2 --end-to-end -k 1 -x }\VariableTok{$\{st_path\}}\NormalTok{/course_materials/genomes/AFPN02.1/AFPN02.1_merge -q }\VariableTok{$\{st_path\}}\NormalTok{/course_materials/fastq/trimmedns_BQ.fq -S trimmednsBQ2.sam }\OperatorTok{2>}\NormalTok{ trimmednsBQ2_stats.txt}
+\BuiltInTok{time}\NormalTok{ /s/software/anaconda/python3/bin/bowtie2 --end-to-end -k 1 -x \textbackslash{}}
+\VariableTok{$\{st_path\}}\NormalTok{/course_materials/genomes/AFPN02.1/AFPN02.1_merge -q \textbackslash{}}
+\VariableTok{$\{st_path\}}\NormalTok{/course_materials/fastq/trimmedns_BQ.fq -S trimmednsBQ2.sam }\OperatorTok{2>}\NormalTok{ \textbackslash{}}
+\NormalTok{trimmednsBQ2_stats.txt}
 \end{Highlighting}
 \end{Shaded}
 
@@ -498,7 +524,7 @@ coli sequences.
 
 \href{https://blast.ncbi.nlm.nih.gov}{blastn website}
 
-\includegraphics[width=0.75000\textwidth]{blast.png}\\
+\includegraphics{blast.png}\\
 
 
 \end{document}
